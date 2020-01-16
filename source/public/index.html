@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/config/site.webmanifest">
+  <title></title>
+</head>
+
+<body>
+  <h1>GO-GITTERS</h1>
+  <script>
+    var results;
+    fetch('http://localhost:8000/listDirectory').then((res) => {
+      return res.json()
+    }).then((result) => {
+      for (item of result) {
+        fetch('http://localhost:8000/readFile/' + item).then((contentResponse) => {
+          return contentResponse.text();
+        }).then((data) => {
+          var node = document.createElement('li');
+          var textnode = document.createTextNode(data);
+          node.appendChild(textnode);
+          document.getElementById('app').appendChild(node);
+        }).catch((err) => {
+          console.log('error getting contents:' + err);
+        });
+      }
+    })
+      .catch((err) => {
+        console.log('error listing directory: ' + err);
+      });
+  </script>
+  <ol id="app">
+
+  </ol>
+</body>
+
+</html>
