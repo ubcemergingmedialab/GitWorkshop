@@ -1,11 +1,12 @@
 const path = require('path');
 const fs = require('fs');
 
-///<summary>
-/// returns the names of all the files in the given the directory 
-/// (path relative to lib)
-/// \param[in] path to directory as string
-/// \param[out] files in directory as array of string, or null 
+/*
+ returns the names of all the files in the given the directory 
+ (path relative to lib)
+ @param path to directory as string
+ @returns files in directory as array of string, or null
+*/ 
 async function listFilesInDirectory(dir) {
     try {
         let directoryPath = path.join(__dirname, '../lib', dir);
@@ -16,11 +17,13 @@ async function listFilesInDirectory(dir) {
     }
 }
 
-///<summary>
-/// returns the contents of a file in a given directory,
-/// or emtpy string. (path relative to lib)
-/// \param[in] a string for the directory name, a string for the file name
-/// \param[out] a string with the contents of the file, or null
+/*
+ returns the contents of a file in a given directory,
+ or emtpy string. (path relative to lib)
+ @param dir a string for the directory name, a 
+ @param string for the filename
+ @returns filename a string with the contents of the file, or null
+*/
 async function fileContents(dir, filename) {
     let result = [];
     try {
