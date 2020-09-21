@@ -11,14 +11,14 @@
 </head>
 
 <body>
-  <h1>GO-GITTERS</h1>
+  <h1>The Best Books</h1>
   <script>
     var results;
-    fetch('http://localhost:8000/listDirectory').then((res) => {
+    fetch('/listDirectory').then((res) => {
       return res.json()
     }).then((result) => {
       for (item of result) {
-        fetch('http://localhost:8000/readFile/' + item).then((contentResponse) => {
+        fetch('/readFile/' + item).then((contentResponse) => {
           return contentResponse.text();
         }).then((data) => {
           var node = document.createElement('li');
